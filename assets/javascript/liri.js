@@ -17,8 +17,15 @@ var client = new Twitter({
   access_token_secret: keys.twitterKeys.access_token_secret,
 });
 
+//will log text of returned data
+function log(data){
+  fs.appendFile("log.txt", data);
+}
+
 // will show my last 20 tweets and when they were created
+
 function tweets(){
+
 	var params = {screen_name: "dudenamedjune"};
 
 	client.get('statuses/user_timeline', params, function(error, tweets, response){
@@ -70,6 +77,7 @@ function spotifyinfo(track){
 
 if(command === "twitter"){
   tweets();
+
 }else if (command === "spotify"){
 	var track = process.argv[3];
 	var i = 4;
